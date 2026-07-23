@@ -694,6 +694,7 @@ function App() {
               <div><dt>Based in</dt><dd>Seoul, Korea</dd></div>
               <div><dt>Study</dt><dd>CAU · Intelligent Semiconductor Engineering</dd></div>
               <div><dt>Focus</dt><dd>AI Product · EdTech · SaaS</dd></div>
+              <div><dt>Current · 2026.07</dt><dd lang="ko">LG Aimers 9기 Phase I 수강 · 2026 AI 반도체 회로 설계 경진대회 1차 결과 제출 준비</dd></div>
             </dl>
           </div>
         </section>
