@@ -534,6 +534,17 @@
     font-size: 0.5em;
   }
 
+  .hero-metrics dd.metric-rank {
+    font-size: clamp(27px, 3.2vw, 42px);
+    white-space: nowrap;
+  }
+
+  .hero-metrics dd.metric-rank small {
+    color: var(--blue-text);
+    font-size: 0.52em;
+    letter-spacing: -0.035em;
+  }
+
   .hero-metrics dt {
     margin-top: 10px;
     color: var(--muted);
@@ -678,131 +689,82 @@
   }
 
   .visual-planner {
-    padding: 42px;
+    display: grid;
+    padding: 34px 26px 0;
+    grid-template-columns: minmax(145px, 0.9fr) minmax(110px, 0.65fr);
+    align-items: end;
+    gap: 24px;
     background:
-      radial-gradient(circle at 100% 0, rgba(47, 107, 255, 0.26), transparent 38%),
+      radial-gradient(circle at 100% 0, rgba(119, 0, 255, 0.32), transparent 40%),
       #0f1d3c;
     color: white;
   }
 
-  .planner-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 16px;
-    font-weight: 700;
+  .planner-device {
+    align-self: end;
+    overflow: hidden;
+    border: 6px solid #151719;
+    border-bottom: 0;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 28px 65px rgba(0, 0, 0, 0.36);
   }
 
-  .planner-date {
-    font-family: "SFMono-Regular", Consolas, monospace;
-    font-size: 11px;
-    font-weight: 500;
-    opacity: 0.58;
-  }
-
-  .planner-flow {
-    display: flex;
-    margin-top: 70px;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .planner-step {
-    display: grid;
-    width: 92px;
-    justify-items: center;
-    gap: 10px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 11px;
-    font-weight: 650;
-  }
-
-  .planner-step > span {
-    display: grid;
-    width: 38px;
-    height: 38px;
-    place-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 50%;
-    font-family: "SFMono-Regular", Consolas, monospace;
-    font-size: 11px;
-  }
-
-  .planner-step.is-done {
-    color: var(--mint);
-  }
-
-  .planner-step.is-done > span {
-    border-color: var(--mint);
-    background: rgba(189, 245, 212, 0.12);
-  }
-
-  .planner-step.is-active {
-    color: white;
-  }
-
-  .planner-step.is-active > span {
-    border-color: var(--blue);
-    background: var(--blue);
-    box-shadow: 0 0 0 8px rgba(47, 107, 255, 0.18);
-  }
-
-  .planner-line {
-    width: clamp(25px, 5vw, 65px);
-    height: 1px;
-    margin-top: 19px;
-    background: rgba(255, 255, 255, 0.18);
-  }
-
-  .planner-metrics {
-    display: grid;
-    margin-top: 76px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .planner-metrics > div {
-    padding: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.11);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .planner-metrics small {
+  .planner-device img {
     display: block;
-    margin-bottom: 12px;
-    color: rgba(255, 255, 255, 0.52);
-    font-size: 10px;
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    object-position: top;
   }
 
-  .planner-metrics strong {
-    font-size: 28px;
-    letter-spacing: -0.04em;
+  .planner-proof {
+    display: grid;
+    align-self: center;
+    padding-bottom: 24px;
+    gap: 24px;
   }
 
-  .planner-metrics s {
-    margin-right: 8px;
-    color: rgba(255, 255, 255, 0.26);
-    font-size: 17px;
-    font-weight: 500;
+  .planner-proof > span {
+    width: fit-content;
+    padding: 6px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.68);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
   }
 
-  .planner-progress {
-    height: 6px;
-    margin-top: 34px;
-    background: rgba(255, 255, 255, 0.1);
+  .planner-proof > div {
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
 
-  .planner-progress span {
+  .planner-proof small {
     display: block;
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue), #5c9dff);
+    color: rgba(255, 255, 255, 0.48);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 8px;
+    letter-spacing: 0.09em;
   }
 
-  .visual-planner > p {
-    margin-top: 12px;
-    color: rgba(255, 255, 255, 0.64);
-    font-size: 11px;
-    text-align: right;
+  .planner-proof strong {
+    display: block;
+    margin-top: 8px;
+    font-size: clamp(21px, 2.4vw, 31px);
+    letter-spacing: -0.055em;
+    line-height: 1;
+  }
+
+  .planner-proof strong i {
+    color: #ba9cff;
+    font-style: normal;
+  }
+
+  .planner-proof p {
+    color: rgba(255, 255, 255, 0.58);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 8px;
+    letter-spacing: 0.06em;
   }
 
   .visual-vibetown {
@@ -1134,6 +1096,29 @@
     letter-spacing: 0.1em;
   }
 
+  .project-decision {
+    display: grid;
+    margin-top: 18px;
+    padding: 16px 18px;
+    grid-template-columns: 84px 1fr;
+    align-items: start;
+    gap: 14px;
+    background: #eef0eb;
+    color: #424844;
+    font-size: 12px;
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+
+  .project-decision span {
+    padding-top: 2px;
+    color: var(--blue-text);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
   .result-list {
     display: grid;
     margin-top: 30px;
@@ -1194,7 +1179,15 @@
     font-size: 12px;
   }
 
-  .project-footer > a {
+  .project-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .project-links a {
     display: inline-flex;
     min-height: 44px;
     flex: 0 0 auto;
@@ -1205,7 +1198,7 @@
     transition: color 160ms ease;
   }
 
-  .project-footer > a:hover {
+  .project-links a:hover {
     color: var(--blue-text);
   }
 
@@ -1670,10 +1663,18 @@
     line-height: 1.7;
   }
 
+  .contact-actions {
+    display: flex;
+    margin-top: 38px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
   .contact-button {
     display: inline-flex;
     min-height: 60px;
-    margin-top: 38px;
     padding: 0 24px;
     align-items: center;
     gap: 12px;
@@ -1691,6 +1692,18 @@
   .contact-button:hover {
     box-shadow: 0 22px 55px rgba(10, 32, 110, 0.3);
     transform: translateY(-3px);
+  }
+
+  .contact-button-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    background: transparent;
+    color: white;
+    box-shadow: none;
+  }
+
+  .contact-button-secondary:hover {
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: none;
   }
 
   .contact-button:focus-visible {
@@ -2002,6 +2015,10 @@
       font-size: 34px;
     }
 
+    .hero-metrics dd.metric-rank {
+      font-size: 27px;
+    }
+
     .hero-metrics dt {
       font-size: 10px;
       line-height: 1.35;
@@ -2028,8 +2045,20 @@
     }
 
     .project-card {
-      padding-top: 48px;
+      padding-top: 62px;
       gap: 28px;
+    }
+
+    .project-card-meta {
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 8px;
+      line-height: 1.4;
+    }
+
+    .project-card-meta span:last-child {
+      max-width: 52%;
+      text-align: right;
     }
 
     .project-visual {
@@ -2048,27 +2077,32 @@
     }
 
     .visual-planner {
-      padding: 28px 22px;
+      padding: 24px 18px 0;
+      grid-template-columns: minmax(0, 1fr) 110px;
+      gap: 14px;
     }
 
-    .planner-flow {
-      margin-top: 54px;
+    .planner-device {
+      border-width: 5px;
+      border-radius: 24px 24px 0 0;
     }
 
-    .planner-step {
-      width: 72px;
+    .planner-device img {
+      height: 390px;
     }
 
-    .planner-metrics {
-      margin-top: 60px;
+    .planner-proof {
+      padding-bottom: 18px;
+      gap: 18px;
     }
 
-    .planner-metrics > div {
-      padding: 16px;
+    .planner-proof strong {
+      font-size: 19px;
     }
 
-    .planner-metrics strong {
-      font-size: 23px;
+    .planner-proof > span,
+    .planner-proof p {
+      font-size: 7px;
     }
 
     .visual-vibetown {
@@ -2121,6 +2155,11 @@
       gap: 6px;
     }
 
+    .project-decision {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
     .result-list {
       grid-template-columns: 1fr;
     }
@@ -2141,6 +2180,10 @@
 
     .project-footer {
       align-items: flex-start;
+    }
+
+    .project-links {
+      justify-content: flex-start;
     }
 
     .system-card {
@@ -2210,6 +2253,18 @@
 
     .contact-section h2 {
       font-size: 48px;
+    }
+
+    .contact-actions {
+      width: 100%;
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .contact-button {
+      width: 100%;
+      padding-inline: 18px;
+      font-size: 12px;
     }
 
     footer {

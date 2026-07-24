@@ -34,6 +34,24 @@ const Github = ({ size = 20 }: IconProps) => (
   </svg>
 )
 
+const Mail = ({ size = 20 }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    fill="none"
+    height={size}
+    viewBox="0 0 24 24"
+    width={size}
+  >
+    <path
+      d="M4 6.5h16v11H4zM4.8 7.3 12 13l7.2-5.7"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+    />
+  </svg>
+)
+
 const Check = ({ size = 16 }: IconProps) => (
   <svg
     aria-hidden="true"
@@ -46,72 +64,122 @@ const Check = ({ size = 16 }: IconProps) => (
   </svg>
 )
 
-const projects = [
+type ProjectVisualType = 'ise' | 'planner' | 'vibetown' | 'scpc'
+
+type Project = {
+  id: string
+  number: string
+  period: string
+  stage: string
+  title: string
+  summary: string
+  detail: string
+  role: string
+  decision: string
+  results: readonly string[]
+  stack: readonly string[]
+  links: readonly {
+    href: string
+    label: string
+  }[]
+  privateLabel?: string
+  visual: ProjectVisualType
+}
+
+const projects: readonly Project[] = [
   {
     id: 'ise',
     number: '01',
-    stage: 'LIVE · PRODUCT',
+    period: '2026.05 — NOW',
+    stage: 'LIVE · OFFICIAL LAUNCH',
     title: 'ISE 커뮤니티',
     summary:
       '흩어진 학과 정보와 LMS 일정을 한곳에 모은 지능형반도체공학과 통합 플랫폼.',
     detail:
       '직접 겪은 e-Class 일정 관리의 불편에서 시작해 과제·퀴즈 일정을 자동 수집하고, 자료 공유·커뮤니티·AI 학습 기능까지 확장했습니다.',
-    contribution: '문제 정의 · 기획 · 디자인 · 풀스택 개발 · 배포',
-    results: ['학과 배포 후 실사용', 'LMS 일정 자동화', 'RAG·Graph 기반 AI 기능'],
+    role: 'Solo · 문제 정의, 기획, 디자인, 풀스택 개발, 배포',
+    decision:
+      'LMS를 3시간 주기로 동기화하고, 학교 이메일 인증과 문서 맥락 기반 AI를 하나의 서비스 흐름으로 묶었습니다.',
+    results: ['학과 공식 채널 출시', 'LMS 3시간 주기 동기화', '학교 이메일 인증'],
     stack: ['Next.js', 'Firebase', 'Gemini', 'GraphRAG'],
-    href: 'https://ise-community.web.app',
-    linkLabel: '서비스 보기',
+    links: [
+      {
+        href: 'https://ise-community.web.app',
+        label: '서비스',
+      },
+      {
+        href: 'https://www.instagram.com/p/DXoON_ZgVmj/?img_index=1',
+        label: '공식 출시 공지',
+      },
+    ],
     visual: 'ise',
   },
   {
     id: 'planner',
     number: '02',
-    stage: 'LIVE · PAID OPS',
+    period: '2026.01 — NOW',
+    stage: 'LIVE · PAID INTERNAL APP',
     title: '원생 계획표 통합 운영 앱',
     summary:
-      '여러 앱을 오가던 학원 운영 업무를 하나의 모바일 흐름으로 줄인 유료 B2B 도구.',
+      '학원 운영자의 반복적인 촬영·문자 발송 업무를 하나의 모바일 흐름으로 줄인 유료 내부 도구.',
     detail:
-      '계획표 촬영, 학생 선택, 메시지 발송과 이력 관리를 한 흐름으로 통합했습니다. 실사용자의 반복 업무를 기준으로 화면과 예외 처리를 설계했습니다.',
-    contribution: '현장 문제 발굴 · 워크플로 설계 · 앱 개발 · 운영',
-    results: ['40분 → 10분', '20클릭 → 5클릭', '월정액 운영 중'],
+      '2026년 1월 중순 도입해 2월까지 무료로 검증했고, 이후 월 1만원으로 전환했습니다. 계획표 촬영, 학생 선택, 메시지 발송과 이력 관리를 한 흐름으로 통합했습니다.',
+    role: 'Solo · 현장 문제 발굴, 워크플로 설계, 앱 개발, 운영',
+    decision:
+      'Android APK에 서버 관리형 PIN과 오프라인 캐시를 적용했습니다. 학생별 하루 1회 발송 제한, 이력과 실행 취소로 중복 발송 위험도 줄였습니다.',
+    results: ['40분 → 10분', '20클릭 → 5클릭', '월 1만원 · 3개월 연속 결제'],
     stack: ['React Native', 'Expo', 'TypeScript', 'Firebase'],
-    href: '',
-    linkLabel: '',
+    links: [],
+    privateLabel: 'PRIVATE APK · v8.0',
     visual: 'planner',
   },
   {
     id: 'vibetown',
     number: '03',
-    stage: 'IN BUILD · EDTECH',
+    period: '2026.05 — NOW',
+    stage: 'PUBLIC PROTOTYPE · PRE-VALIDATION',
     title: 'Vibetown',
     summary:
       '고등학생이 AI와 함께 자신의 첫 웹 프로젝트를 완성하도록 돕는 한국어 바이브코딩 SaaS.',
     detail:
-      '예시 프로젝트 탐색부터 명세 작성, 웹 IDE, 도구 사용 학습, 배포까지 이어지는 제품 경험을 설계했습니다. 현재 프로덕션 프로토타입을 검증하며 개발 중입니다.',
-    contribution: '제품 전략 · UX · 풀스택 · 배포 인프라 · 검증',
-    results: ['프로덕션 배포', 'Unit 119/119', 'Seed E2E 12/12'],
+      '예시 프로젝트 탐색부터 명세 작성, 웹 IDE, 도구 사용 학습, 배포까지 이어지는 경험을 구현했습니다. 현재 공개 프로토타입 단계이며 사용자·시장 검증은 아직 시작 전입니다.',
+    role: 'Solo · 제품 전략, UX, 풀스택, 배포 인프라, 테스트',
+    decision:
+      '브라우저에 프로젝트 키를 노출하지 않는 짧은 공개 URL과 동일 출처 프록시를 설계해, 학생 결과물을 안전하게 공유하도록 했습니다.',
+    results: ['공개 프로토타입', 'Unit 119/119', '키 없는 공개 URL'],
     stack: ['React', 'Cloudflare', 'Firebase', 'AI Agents'],
-    href: 'https://vibetown.co.kr',
-    linkLabel: '프로토타입 보기',
+    links: [
+      {
+        href: 'https://vibetown.co.kr',
+        label: '프로토타입',
+      },
+    ],
     visual: 'vibetown',
   },
   {
     id: 'scpc',
     number: '04',
-    stage: 'OPEN SOURCE · AI SYSTEM',
+    period: '2026.07 · 5-DAY SPRINT',
+    stage: 'OPEN SOURCE · AI CHALLENGE',
     title: 'SCPC Agent Harness',
     summary:
       '모호한 AI 요청을 일관된 정책·행동 계획으로 바꾸는 결정론적 에이전트 하네스.',
     detail:
-      '외부 LLM 없이 구조와 의미를 해석하는 규칙 기반 시스템을 만들었습니다. 대회에서 얻은 시행착오를 재사용 가능한 Agent Toolkit으로 확장했습니다.',
-    contribution: '실험 설계 · 규칙 엔진 · 평가 하네스 · 오픈소스',
-    results: ['Public score 0.8610', '700개 출력 재현', '외부 API 0개'],
+      '외부 LLM 없이 구조와 의미를 해석하는 규칙 기반 시스템을 만들고, 5일간 평가 루프를 반복해 공개 점수를 0.379에서 0.861까지 높였습니다.',
+    role: 'Solo · 실험 설계, 규칙 엔진, 평가 하네스, 오픈소스',
+    decision:
+      '파서·불변식·준수 감사를 결정론적으로 분리하고, 변형 테스트로 같은 의미의 입력에서 정책이 흔들리지 않는지 검증했습니다.',
+    results: ['1,845명 중 269위', '0.379 → 0.861', '외부 LLM·네트워크 0'],
     stack: ['Python', 'Deterministic AI', 'Evaluation', 'Agent Harness'],
-    href: 'https://github.com/codingbear107/scpc-2026-harness',
-    linkLabel: 'GitHub 보기',
+    links: [
+      {
+        href: 'https://github.com/codingbear107/scpc-2026-harness',
+        label: 'GitHub',
+      },
+    ],
     visual: 'scpc',
   },
-] as const
+]
 
 const otherWork = [
   {
@@ -188,7 +256,7 @@ function useReveal() {
   }, [])
 }
 
-function ProjectVisual({ type }: { type: (typeof projects)[number]['visual'] }) {
+function ProjectVisual({ type }: { type: ProjectVisualType }) {
   if (type === 'ise') {
     return (
       <div className="project-visual visual-ise">
@@ -211,41 +279,28 @@ function ProjectVisual({ type }: { type: (typeof projects)[number]['visual'] }) 
 
   if (type === 'planner') {
     return (
-      <div className="project-visual visual-planner" aria-hidden="true">
-        <div className="planner-top">
-          <span>오늘의 운영</span>
-          <span className="planner-date">07.24</span>
+      <div className="project-visual visual-planner">
+        <div className="planner-device">
+          <img
+            alt="원생 계획표 통합 운영 앱 버전 8.0 설정 화면"
+            height="1376"
+            loading="lazy"
+            src="/projects/planner-settings-v8.jpg"
+            width="648"
+          />
         </div>
-        <div className="planner-flow">
-          <div className="planner-step is-done">
-            <span><Check /></span>
-            계획표 촬영
-          </div>
-          <div className="planner-line" />
-          <div className="planner-step is-active">
-            <span>2</span>
-            학생 선택
-          </div>
-          <div className="planner-line" />
-          <div className="planner-step">
-            <span>3</span>
-            발송
-          </div>
-        </div>
-        <div className="planner-metrics">
+        <div className="planner-proof" aria-hidden="true">
+          <span>PRIVATE APK · v8.0</span>
           <div>
-            <small>작업 시간</small>
-            <strong><s>40m</s> 10m</strong>
+            <small>WORK TIME</small>
+            <strong>40m <i>→</i> 10m</strong>
           </div>
           <div>
-            <small>화면 탭</small>
-            <strong><s>20</s> 5</strong>
+            <small>PAID OPERATION</small>
+            <strong>3 months</strong>
           </div>
+          <p>PIN-gated · Firebase</p>
         </div>
-        <div className="planner-progress">
-          <span style={{ width: '75%' }} />
-        </div>
-        <p>반복 업무 75% 단축</p>
       </div>
     )
   }
@@ -446,19 +501,19 @@ function App() {
 
           <dl className="hero-metrics" aria-label="주요 수치">
             <div>
-              <dt>기획·구현 프로젝트</dt>
-              <dd>8<sup>+</sup></dd>
-            </div>
-            <div>
-              <dt>현재 운영 중인 웹 제품</dt>
+              <dt>대표 프로젝트</dt>
               <dd>4</dd>
             </div>
             <div>
-              <dt>SCPC 하네스 공개 점수</dt>
-              <dd>0.861</dd>
+              <dt>연속 유료 운영</dt>
+              <dd>3<sup>개월</sup></dd>
             </div>
             <div>
-              <dt>유료 운영 제품</dt>
+              <dt>SCPC 참가자 중 순위</dt>
+              <dd className="metric-rank">269<small>/1,845</small></dd>
+            </div>
+            <div>
+              <dt>학과 공식 출시</dt>
               <dd>1</dd>
             </div>
           </dl>
@@ -485,7 +540,7 @@ function App() {
                 style={{ '--delay': `${index * 70}ms` } as React.CSSProperties}
               >
                 <div className="project-card-meta">
-                  <span>{project.number}</span>
+                  <span>{project.number} · {project.period}</span>
                   <span lang="en">{project.stage}</span>
                 </div>
                 <ProjectVisual type={project.visual} />
@@ -497,8 +552,12 @@ function App() {
                   <div className="project-copy">
                     <p>{project.detail}</p>
                     <p className="contribution">
-                      <span lang="en">MY ROLE</span>
-                      {project.contribution}
+                      <span lang="en">OWNERSHIP</span>
+                      {project.role}
+                    </p>
+                    <p className="project-decision">
+                      <span lang="en">KEY DECISION</span>
+                      {project.decision}
                     </p>
                   </div>
                   <ul className="result-list" aria-label={`${project.title} 성과`}>
@@ -510,19 +569,23 @@ function App() {
                     <ul className="tag-list" aria-label={`${project.title} 기술`}>
                       {project.stack.map((item) => <li key={item}>{item}</li>)}
                     </ul>
-                    {project.href ? (
-                      <a
-                        aria-label={`${project.title} ${project.linkLabel} (새 탭)`}
-                        href={project.href}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        {project.linkLabel}
-                        <ArrowUpRight />
-                      </a>
-                    ) : (
-                      <span className="private-label">운영 데이터 비공개</span>
-                    )}
+                    <div className="project-links">
+                      {project.links.map((link) => (
+                        <a
+                          aria-label={`${project.title} ${link.label} 열기 (새 탭)`}
+                          href={link.href}
+                          key={link.href}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          {link.label}
+                          <ArrowUpRight />
+                        </a>
+                      ))}
+                      {project.privateLabel && (
+                        <span className="private-label">{project.privateLabel}</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </article>
@@ -569,7 +632,7 @@ function App() {
               <dl className="system-stats" lang="en">
                 <div><dt>specialized skills</dt><dd>9</dd></div>
                 <div><dt>review agent</dt><dd>1</dd></div>
-                <div><dt>reusable loops</dt><dd>∞</dd></div>
+                <div><dt>evidence levels</dt><dd>3</dd></div>
               </dl>
             </article>
 
@@ -648,10 +711,10 @@ function App() {
         <section className="section capability-section">
           <div className="capability-intro" data-reveal>
             <p className="section-kicker" lang="en">WHAT I BRING</p>
-            <h2>혼자서도 전체를 보고,<br />팀에서는 빈칸을 채웁니다.</h2>
+            <h2>전체 흐름을 연결하고,<br />팀의 빈칸을 채웁니다.</h2>
             <p>
-              아이디어가 제품이 되려면 화면보다 먼저 문제와 사용 흐름을 이해해야
-              한다고 믿습니다.
+              모호한 요구를 사용 흐름과 수용 기준으로 구조화하고, 확인되지 않은
+              부분은 가정과 질문으로 분리합니다.
             </p>
           </div>
           <div className="capability-list">
@@ -711,17 +774,28 @@ function App() {
             제품 구현, 빠른 MVP, AI 기능 설계와 검증이 필요한 팀의 제안을
             기다립니다.
           </p>
-          <a
-            aria-label="GitHub에서 보기 — 프로필 열기 (새 탭)"
-            className="contact-button"
-            href="https://github.com/codingbear107"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Github size={22} />
-            GitHub에서 보기
-            <ArrowUpRight size={22} />
-          </a>
+          <div className="contact-actions">
+            <a
+              aria-label="gibeom107@gmail.com으로 김기범에게 이메일 보내기"
+              className="contact-button"
+              href="mailto:gibeom107@gmail.com"
+            >
+              <Mail size={22} />
+              gibeom107@gmail.com
+              <ArrowUpRight size={22} />
+            </a>
+            <a
+              aria-label="GitHub 프로필 열기 (새 탭)"
+              className="contact-button contact-button-secondary"
+              href="https://github.com/codingbear107"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Github size={22} />
+              GitHub
+              <ArrowUpRight size={22} />
+            </a>
+          </div>
         </section>
       </main>
 
